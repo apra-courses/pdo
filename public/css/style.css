@@ -1,0 +1,12 @@
+#table-users , th, td {
+    border: 1px solid #000000;    
+    text-align: left;
+    border-collapse: collapse;
+}
+
+
+#table-roles , th, td {
+    border: 1px solid #000000;    
+    text-align: left;
+    border-collapse: collapse;
+}
