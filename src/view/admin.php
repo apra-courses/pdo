@@ -11,7 +11,7 @@
             <!-- header -->
             <div id="header">
                 <br> 
-                Home page base azioni corso pdo
+                Home page azioni base corso pdo
 
             </div>
 

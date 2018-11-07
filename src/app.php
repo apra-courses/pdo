@@ -22,7 +22,7 @@ class App {
     public static function getInstance() {
         static $instance = null;
         if (!$instance) {
-            $instance = new App();
+            $instance = new Static();
         }
         return $instance;
     }
