@@ -2,11 +2,9 @@
 
 class UserRepository {
 
-    private $logger;
     private $roleRepository;
 
     public function __construct() {
-        $this->logger = App::getInstance()->getLogger("UserRepository");
         $this->roleRepository = new RoleRepository();
     }
 
@@ -25,7 +23,7 @@ class UserRepository {
             }
             return $users;
         } catch (Exception $ex) {
-            $this->logger->error($ex->getMessage());
+       
             return null;
         }
     }
@@ -57,7 +55,7 @@ class UserRepository {
             }
             return null;
         } catch (Exception $ex) {
-            $this->logger->error($ex->getMessage());
+
             return null;
         }
     }
@@ -91,12 +89,11 @@ class UserRepository {
 
             $conn->commit();
 
-            $this->logger->info("Nuovo utente inserito: " . $user->getUsername());
 
             return true;
         } catch (Exception $ex) {
             $conn->rollBack();
-            $this->logger->error($ex->getMessage());
+  
 
             return false;
         }
@@ -124,12 +121,11 @@ class UserRepository {
 
             $conn->commit();
 
-            $this->logger->info("Utente modificato: " . $user->toString());
 
             return true;
         } catch (Exception $ex) {
             $conn->rollBack();
-            $this->logger->error($ex->getMessage());
+     
             return false;
         }
     }
@@ -155,12 +151,12 @@ class UserRepository {
 
             $conn->commit();
 
-            $this->logger->info("User $id eliminato");
+
 
             return true;
         } catch (Exception $ex) {
             $conn->rollBack();
-            $this->logger->error($ex->getMessage());
+         
             return false;
         }
     }
@@ -182,7 +178,7 @@ class UserRepository {
             'firstname' => $model->getFirstname(),
             'surname' => $model->getSurname(),
             'age' => $model->getAge(),
-            'registrationDate' => $model->getPublicationDate() ? : date('Y-m-d')
+            'registrationDate' => $model->getRegistrationDate() ? : date('Y-m-d')
         );
     }
 

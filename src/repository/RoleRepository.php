@@ -2,10 +2,9 @@
 
 class RoleRepository {
 
-    private $logger;
 
     public function __construct() {
-        $this->logger = App::getInstance()->getLogger("RoleRepository");
+
     }
 
     public function findAll() {
@@ -23,7 +22,7 @@ class RoleRepository {
             }
             return $roles;
         } catch (Exception $ex) {
-            $this->logger->error($ex->getMessage());
+          
             return null;
         }
     }
@@ -42,7 +41,7 @@ class RoleRepository {
             }
             return null;
         } catch (Exception $ex) {
-            $this->logger->error($ex->getMessage());
+          
             return null;
         }
     }
@@ -69,12 +68,12 @@ class RoleRepository {
 
             $conn->commit();
 
-            $this->logger->info("Nuovo ruolo inserito: " . $role->getDescription());
+      
 
             return true;
         } catch (Exception $ex) {
             $conn->rollBack();
-            $this->logger->error($ex->getMessage());
+
 
             return false;
         }
@@ -97,12 +96,11 @@ class RoleRepository {
 
             $conn->commit();
 
-            $this->logger->info("Role modificato: " . $role->toString());
+
 
             return true;
         } catch (Exception $ex) {
             $conn->rollBack();
-            $this->logger->error($ex->getMessage());
             return false;
         }
     }
@@ -126,12 +124,9 @@ class RoleRepository {
             $st->closeCursor();
             $conn->commit();
 
-            $this->logger->info("Role $id eliminato");
-
             return true;
         } catch (Exception $ex) {
             $conn->rollBack();
-            $this->logger->error($ex->getMessage());
             return false;
         }
     }
@@ -152,7 +147,7 @@ class RoleRepository {
             }
             return null;
         } catch (Exception $ex) {
-            $this->logger->error($ex->getMessage());
+
             return null;
         }
     }

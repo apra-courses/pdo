@@ -154,6 +154,17 @@ class Controller {
             return $toReturn;
         }
 
+        if ($user->getRegistrationDate()) {
+            $d = DateTime::createFromFormat("Y-m-d", $user->getRegistrationDate());
+            if (!$d) {
+                $toReturn['EXITCODE'] = 1;
+                if (strlen($toReturn['ERRORMSG']) > 0) {
+                    $toReturn['ERRORMSG'] .= '<br>';
+                }
+                $toReturn['ERRORMSG'] .= 'Data non valida';
+                return $toReturn;
+            }
+        }
 
         if (strlen($user->getSurname()) === 0) {
             $toReturn['EXITCODE'] = 1;

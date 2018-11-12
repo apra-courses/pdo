@@ -1,8 +1,4 @@
 <?php
-use \Monolog\Logger;
-use \Monolog\Handler\StreamHandler;
-use \Monolog\Formatter\LineFormatter;
-use Monolog\ErrorHandler;
 
 class App {
     
@@ -13,7 +9,6 @@ class App {
     private $action;        
     
     private function __construct() {  
-        $this->initErrorHandler();
         $this->readConfig();
         $this->readPathInfo();
         $this->readAction();                
@@ -37,19 +32,6 @@ class App {
      
     public function getAction() {        
         return $this->action ?: self::DEFAULT_CONTROLLER_ACTION;
-    }
-    
-    public function getLogger($channelName, $filename = 'app.log') {
-        $logger = new Logger($channelName);
-        $formatter = new LineFormatter(null, null, false, true);
-        $handler = new StreamHandler(LOG_DIR . '/' . $filename, $this->getConfig('LOG_LEVEL'));
-        $handler->setFormatter($formatter);
-        $logger->pushHandler($handler);                        
-        return $logger;
-    }
-    
-    private function initErrorHandler() {             
-        ErrorHandler::register($this->getLogger('system', 'err.log'));
     }
     
     private function readConfig() {
